@@ -12,13 +12,10 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  order (starterIndex, menuIndex) {
+  order(starterIndex, menuIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[menuIndex]];
   },
 };
-
-
-
 
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 // for (const [index,item] of menu.entries())  {
@@ -30,8 +27,6 @@ const restaurant = {
 //   console.log(days);
 
 // }
-
-
 
 // const [starter, main] = restaurant.order(2, 1);
 // console.log(starter, main);
@@ -213,7 +208,7 @@ const restaurant = {
 //   console.log('Not Working');
 // }
 
-//Basic Examples 
+//Basic Examples
 // console.log(23 || 'Ahmad');
 // console.log('' || 23);
 // console.log('' || undefined || 0 || 'Ahmad');
@@ -223,8 +218,7 @@ const restaurant = {
 // console.log(undefined && 'Ahmad');
 // console.log(7 && 'Ahmad');
 
-
-// //when first operand is only null and undefined this operator returns 2nd operand 
+// //when first operand is only null and undefined this operator returns 2nd operand
 // console.log(null ?? 'YOO');
 // console.log(undefined ?? 42);
 
@@ -234,7 +228,6 @@ const restaurant = {
 // console.log('' ?? 'broo');
 
 // // Logical Operator
-
 
 // const rest1 = {
 //   name: 'Capri',
@@ -257,7 +250,6 @@ const restaurant = {
 // console.log(rest1);
 // console.log(rest2);
 
-
 // //nullish  Assignment operator ??
 
 // const rest3 = {
@@ -268,13 +260,12 @@ const restaurant = {
 // rest3.numGuests ??= 10;
 // console.log(rest3);
 
-
 // // Looping on objects with key, entries, values methods
 // let person = {
 //   name: "Sheraz",
 //   age: 15,
 //   address: "Pakistan",
-  
+
 // };
 // //keys
 // let personKeys = Object.keys(person);
@@ -293,9 +284,8 @@ const restaurant = {
 //   console.log(`These are the details ${x1}`);
 // }
 
-
 // const rest = new Map();
-//   console.log(rest.set('y', 'YOO')); 
+//   console.log(rest.set('y', 'YOO'));
 // rest.set('openTime', 10);
 // rest.set('closeTime', 20);
 // console.log(rest.set('name', 'Burj-Khalifa'));
@@ -322,28 +312,29 @@ const restaurant = {
 
 // console.log(allArrays.get(allArrays.get('Correct')=== answer));
 
-
 class Animal {
   constructor(name) {
-    this.name=name
+    this.name = name;
   }
   speak() {
     console.log(`${this.name} is the name of Dog`);
   }
 }
 
-const animal = new Animal("Sexy");
+const animal = new Animal('Sexy');
 animal.speak();
 
 //Subclass
 
-class snake extends Animal{
+class snake extends Animal {
   constructor(name, sound) {
     super(name);
     this.sound = sound;
   }
   speak() {
-    console.log(`My Name is ${this.name} and When i see a girl i make a sound ${this.sound}`);
+    console.log(
+      `My Name is ${this.name} and When i see a girl i make a sound ${this.sound}`
+    );
   }
 }
 
@@ -351,68 +342,64 @@ const cobra = new snake('Cobra', 'Suuuii');
 cobra.speak();
 console.log(cobra.name, cobra.sound);
 
-
 // Implementing An array
 
-class MyArray{
+class MyArray {
   constructor() {
     this.length = 0;
     this.data = {};
-
   }
   get(index) {
     return this.data[index];
   }
   push(item) {
     this.data[this.length] = item;
-    this.length++
-    return this.length ;
+    this.length++;
+    return this.length;
   }
   pop() {
     const lastItem = this.data[this.length - 1];
-    delete this.data[this.length - 1]
-    return lastItem
+    delete this.data[this.length - 1];
+    return lastItem;
   }
   delete(index) {
     delete this.data[index];
     this.shiftitems[index];
-    this.length--
-
+    this.length--;
   }
   shiftitems(index) {
-    for (let i = index; i < this.length - 1; i++){
+    for (let i = index; i < this.length - 1; i++) {
       this.data[i] = this.data[i + 1];
     }
   }
 }
 
-const newArray = new MyArray()
+const newArray = new MyArray();
 newArray.push('hi');
-newArray.push('Boobs')
-newArray.push('Ahmad')
+newArray.push('Boobs');
+newArray.push('Ahmad');
 newArray.push('Yoo');
 newArray.push('sexy');
 
 newArray.delete(2);
-newArray.delete(4)
-
+newArray.delete(4);
 
 console.log(newArray);
-      
-// Reverse String 
+
+// Reverse String
 function reverseString(str) {
   let newString = '';
-  for (let i = str.length - 1; i >= 0; i--){
+  for (let i = str.length - 1; i >= 0; i--) {
     newString += str[i];
   }
-   return newString
+  return newString;
 }
 
 console.log(reverseString('ahmad'));
 
 function reverseString1(str1) {
   let spliting = str1.split('');
-   let reverseIt = spliting.reverse('');
+  let reverseIt = spliting.reverse('');
   return reverseIt.join('');
 }
 console.log(reverseString1('ahmad'));
@@ -421,12 +408,9 @@ console.log(reverseString1('ahmad'));
 // const firstArray = [0,3,4,31];
 // const secondArray = [4,6,30];
 
-
-
 //My attempt For Merge Sort Arryays
 
 // const result = [];
-
 
 // function mergeSoretedArrays(firstArray, secondArray) {
 //   for (let i = 0; i <firstArray.length; i++){
@@ -437,16 +421,13 @@ console.log(reverseString1('ahmad'));
 //   for (let i = 0; i < secondArray.length; i++) {
 //     const secondFrist = 1;
 //     result.push(0, secondFrist);
-   
+
 //   }
 
- 
 // return result
 // }
 // console.log(mergeSoretedArrays([0, 3, 4, 31]));
 // console.log(mergeSoretedArrays([4, 6, 30]));
-
-
 
 // Solution Of Merge Sort Arrays
 
@@ -455,37 +436,35 @@ console.log(reverseString1('ahmad'));
 //   let i = 0;
 //   let j = 0;
 
-  // Loop through both arrays and merge them into the result array
-  //   while (i < firstArray.length && j < secondArray.length) {
-  //     if (firstArray[i] < secondArray[j]) {
-  //       result.push(firstArray[i]);
-  //       i++;
-  //     } else {
-  //       result.push(secondArray[j]);
-  //       j++;
-  //     }
-  //   }
+// Loop through both arrays and merge them into the result array
+//   while (i < firstArray.length && j < secondArray.length) {
+//     if (firstArray[i] < secondArray[j]) {
+//       result.push(firstArray[i]);
+//       i++;
+//     } else {
+//       result.push(secondArray[j]);
+//       j++;
+//     }
+//   }
 
-  //   // Add any remaining elements from firstArray
-  //   while (i < firstArray.length) {
-  //     result.push(firstArray[i]);
-  //     i++;
-  //   }
+//   // Add any remaining elements from firstArray
+//   while (i < firstArray.length) {
+//     result.push(firstArray[i]);
+//     i++;
+//   }
 
-  //   // Add any remaining elements from secondArray
-  //   while (j < secondArray.length) {
-  //     result.push(secondArray[j]);
-  //     j++;
-  //   }
+//   // Add any remaining elements from secondArray
+//   while (j < secondArray.length) {
+//     result.push(secondArray[j]);
+//     j++;
+//   }
 
-  //   return result; // Return the merged result array
-  // }
+//   return result; // Return the merged result array
+// }
 
-  // // Example usage
-  // console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
-  // // Output: [0, 3, 4, 4, 6, 30, 31]
-
-
+// // Example usage
+// console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
+// // Output: [0, 3, 4, 4, 6, 30, 31]
 
 //   function mergeSoretedArrays2(first, second) {
 //     const result = [];
@@ -505,17 +484,14 @@ console.log(reverseString1('ahmad'));
 //     for (; i < first.length; i++){
 //           console.log(`Adding remaining from first: ${first[i]}`);
 //       result.push(first[i]);
-      
 
 //     }
 //     while ( j < second.length) {
 //           console.log(`Adding remaining from second: ${second[j]}`);
 //       result.push(second[j]);
 //       j++
-     
+
 //     }
-
-
 
 //     return result
 
@@ -535,23 +511,16 @@ console.log(reverseString1('ahmad'));
 
 // console.log(airline.slice(1, -1))
 
-const planeTicket=function(seat){
-const s = seat.slice(-1);
-if(s ==='B'||s ==='A')
-  console.log("You got lucky mate!");
-
- 
- else
-    console.log('you got unlucky');
-  
-
-}
+const planeTicket = function (seat) {
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'A') console.log('You got lucky mate!');
+  else console.log('you got unlucky');
+};
 planeTicket('11B');
 planeTicket('23E');
 planeTicket('34A');
-const email = 'chaudharyahm12@gmail.com'
+const email = 'chaudharyahm12@gmail.com';
 const loginEmail = '   ChaudhAry12@GmAil.Com ';
-
 
 const lowerCaseEmail = email.toLowerCase().trim();
 // const removeEmailSpace = email.trim();
@@ -561,16 +530,16 @@ if (email === lowerCaseEmail) {
   console.log('The user write the correct email:)');
   // alert("Cheery Cheery lady");
 } else {
-  console.log('Try Again!')
+  console.log('Try Again!');
 }
 
 // Strings Replace Method
-const clothPrice = "2590$";
+const clothPrice = '2590$';
 const newClothPrice = clothPrice.replace('5', '8');
 console.log(newClothPrice);
 
 const announcement = 'All i need is the loyalty , and loyalty';
-console.log(announcement.replaceAll('loyalty','pink pussy'));
+console.log(announcement.replaceAll('loyalty', 'pink pussy'));
 
 //Bolean Method of string
 
@@ -578,4 +547,15 @@ const personData = 'Ahmad Sharafat Age 20 and virgin';
 const normalizePersonData = personData.toLowerCase();
 console.log(normalizePersonData.includes('ahmad'));
 console.log(normalizePersonData.startsWith('ahmad'));
+
+// Split and join method In strings
+const captlizeName = function (normalName) {
+  const splitName = normalName.split(' ');
+  const captlizeNameArray = [];
+  for (const n of splitName) {
+    captlizeNameArray.push(n[0].toUpperCase() + n.slice(1));
+  }
+  console.log(captlizeNameArray.join(' '));
+};
+captlizeName('Ahmad Sharafat is a great guy!');
 
