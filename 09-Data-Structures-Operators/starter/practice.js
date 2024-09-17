@@ -584,3 +584,11 @@ for (const d of repeatStatement2) {
 }
 
 console.log(repeatStatementArray.join(' '));
+
+//  repeat method of strings
+
+const statment1 = 'My client is going to fucking jail by all means! ';
+const statment2 =
+  'Bary Bary Sheron mn asi Choti Choti Btyn Ho jati ha Senorita! ';
+console.log(statment1.repeat(3));
+console.log(statment2.repeat(5));
