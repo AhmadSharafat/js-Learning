@@ -572,3 +572,15 @@ const maskingCreditCard = function (cardNumber) {
 };
 console.log(maskingCreditCard(12567834598872));
 console.log(maskingCreditCard('45767433882211'));
+
+// Practice the previous Concepts
+const repeatStatementArray = [];
+const repeatStatement =
+  "The eyes chico they don't lie! and words can't define her how beautiful she is!";
+const repeatStatement2 = repeatStatement.split(' ');
+
+for (const d of repeatStatement2) {
+  repeatStatementArray.push(d[0].toUpperCase() + d.slice(1));
+}
+
+console.log(repeatStatementArray.join(' '));
