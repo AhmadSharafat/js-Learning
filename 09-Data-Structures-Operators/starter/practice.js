@@ -559,3 +559,16 @@ const captlizeName = function (normalName) {
 };
 captlizeName('Ahmad Sharafat is a great guy!');
 
+// padding Method of string
+const messege = 'Thanks My lady!';
+console.log(messege.padStart(25, '+').padEnd(15, '+'));
+console.log(messege.padStart(25, '+').padEnd(15, '-'));
+
+// masking Credit Card
+const maskingCreditCard = function (cardNumber) {
+  const str = cardNumber + '';
+  const lastNumbers = str.slice(-4);
+  return lastNumbers.padStart(14, '*');
+};
+console.log(maskingCreditCard(12567834598872));
+console.log(maskingCreditCard('45767433882211'));
