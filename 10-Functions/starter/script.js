@@ -43,3 +43,12 @@ const checkIn = function (flightNum, passengerData) {
 checkIn(flight, passengerDetails);
 console.log(flight);
 console.log(passengerDetails);
+
+// High order function
+const removeSpace = function (str) {
+  return str.replaceAll('', '-').toLowerCase();
+};
+const upperCase = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join();
+};
