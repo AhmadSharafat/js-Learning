@@ -22,3 +22,24 @@ const flightBookings = function (
 };
 flightBookings('LH123', 'Al Pacino', 2);
 flightBookings('Ahmad');
+
+// Primative and Reference Type in functions
+
+const flight = 'Lh334';
+const passengerDetails = {
+  name: 'Ahmad Sharafat',
+  passport: 235567789,
+};
+
+const checkIn = function (flightNum, passengerData) {
+  flightNum = 'Lh333';
+  passengerData.name = 'Mr.' + passengerData.name;
+  if (passengerData.passport === 235567789) {
+    alert('Please Check in! ');
+  } else {
+    alert('Your Passport Number is incorrect');
+  }
+};
+checkIn(flight, passengerDetails);
+console.log(flight);
+console.log(passengerDetails);
