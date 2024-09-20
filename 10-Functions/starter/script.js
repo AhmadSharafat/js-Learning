@@ -46,9 +46,27 @@ console.log(passengerDetails);
 
 // High order function
 const removeSpace = function (str) {
-  return str.replaceAll('', '-').toLowerCase();
+  return str.replaceAll('', ' ').toLowerCase();
 };
 const upperCase = function (str) {
   const [first, ...others] = str.split(' ');
-  return [first.toUpperCase(), ...others].join();
+  return [first.toUpperCase(), ...others].join(' ');
 };
+
+const transformer = function (str, fn) {
+  console.log(`Here is the orignal: ${str}`);
+  console.log(`Transform to Upper Case: ${fn(str)}`);
+  console.log(fn.name);
+};
+transformer('JavaScript is the best!', upperCase);
+transformer('JavaScript is the best!', removeSpace);
+
+// Practice of High Order Function
+const splitingOfArray = function (str) {
+  return str.split(' ');
+};
+const transformSplit = function (str, fn) {
+  console.log(`Here is the Best version of String: ${fn(str)}`);
+};
+
+transformSplit('Why do we fall sir!', splitingOfArray);
