@@ -35,7 +35,7 @@ const checkIn = function (flightNum, passengerData) {
   flightNum = 'Lh333';
   passengerData.name = 'Mr.' + passengerData.name;
   if (passengerData.passport === 235567789) {
-    alert('Please Check in! ');
+    // alert('Please Check in! ');
   } else {
     alert('Your Passport Number is incorrect');
   }
@@ -70,3 +70,21 @@ const transformSplit = function (str, fn) {
 };
 
 transformSplit('Why do we fall sir!', splitingOfArray);
+
+// Function return Function
+const greet = function (greetings) {
+  return function (name) {
+    console.log(`${greetings} ${name}`);
+  };
+};
+const greaterHey = greet('Hey');
+greaterHey('Ahmad');
+greaterHey('Sheraz');
+
+// With Arrow Function
+
+const meetUp = greetings => name => {
+  console.log `${greetings} ${name} `;
+};
+const getTogether = meetUp('Hello');
+getTogether('Boys');
