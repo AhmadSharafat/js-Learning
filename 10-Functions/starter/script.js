@@ -96,12 +96,13 @@ const PiaAirlines = {
   book(flightNum, name) {
     console.log(
       `${name} books a flight with ${this.airline} code and flight number is ${this.iataCode}${flightNum} `
-    )
-    
+    );
+    this.bookings.push({ flight: `${this.iataCode} ${flightNum} `, name });
   },
 };
 PiaAirlines.book(234, 'Ahmad');
 PiaAirlines.book(234, 'Kholi');
+console.log(PiaAirlines.bookings);
 
 const flyJinnah = {
   airline: 'Fly Jinnah',
