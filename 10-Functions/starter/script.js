@@ -84,7 +84,32 @@ greaterHey('Sheraz');
 // With Arrow Function
 
 const meetUp = greetings => name => {
-  console.log `${greetings} ${name} `;
+  console.log`${greetings} ${name} `;
 };
 const getTogether = meetUp('Hello');
 getTogether('Boys');
+// The Call and Apply Method
+const PiaAirlines = {
+  airline: 'PIA',
+  iataCode: 'PA',
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} books a flight with ${this.airline} code and flight number is ${this.iataCode}${flightNum} `
+    )
+    
+  },
+};
+PiaAirlines.book(234, 'Ahmad');
+PiaAirlines.book(234, 'Kholi');
+
+const flyJinnah = {
+  airline: 'Fly Jinnah',
+  iataCode: 'Fj',
+  bookings: [],
+};
+const book = PiaAirlines.book;
+
+// book(229, 'ahmad');
+book.call(flyJinnah, 289, 'Sheraz');
+book.call(PiaAirlines, 444, 'Bruce Wayne');
