@@ -114,3 +114,48 @@ const book = PiaAirlines.book;
 // book(229, 'ahmad');
 book.call(flyJinnah, 289, 'Sheraz');
 book.call(PiaAirlines, 444, 'Bruce Wayne');
+
+const flyEmirates = {
+  airline: 'Fly Emirates',
+  iataCode: 'FE',
+  bookings: [],
+};
+
+// Bind Method
+// With the Bind method we attach function to any object
+const bookFE = book.bind(flyEmirates);
+bookFE(29, 'Mr John Wick');
+bookFE(56, 'Ch Sharfat');
+
+// With Event Listners
+PiaAirlines.planes = 300;
+PiaAirlines.buyPlanes = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+
+// This not works because here method is called by button (Query-Selector ) not by Pia Airlines Object
+// document.querySelector('.buy').addEventListener('click', PiaAirlines.buyPlanes);
+
+// Here i add bind method which returns a function and this function will be called by PiA airlines Object
+document
+  .querySelector('.buy')
+  .addEventListener('click', PiaAirlines.buyPlanes.bind(PiaAirlines));
+
+// Partial Application
+// we apply the bind partial application as bind method return function
+//and due to partial we fix the value for rate this the application of bind method
+const govTax = (rate, value) => value + value - rate;
+const calGovTax = govTax.bind(null, 150);
+console.log(calGovTax(200));
+// Look we add only the argument for value parameter
+console.log(calGovTax(300));
+// Practice old Concept Function Return a Function
+const taxCal = function (rate) {
+  return function (value) {
+    console.log(value + value - rate);
+  };
+};
+const finalTaxCal = taxCal(150);
+finalTaxCal(250);
