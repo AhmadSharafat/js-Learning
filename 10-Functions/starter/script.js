@@ -159,3 +159,19 @@ const taxCal = function (rate) {
 };
 const finalTaxCal = taxCal(150);
 finalTaxCal(250);
+
+// Practice OF Function Methods
+const student = {
+  name: 'Ahmad Sharafat',
+  grade: '10th Class',
+  introduce() {
+    console.log(`My name is ${this.name} and a student of ${this.grade} `);
+  },
+};
+student.introduce();
+const introduction = student.introduce;
+const teacher = {
+  name: 'Walter White',
+  grade: '10th class chemistry teacher  ',
+};
+introduction.call(teacher);
