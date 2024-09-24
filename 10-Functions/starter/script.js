@@ -161,6 +161,7 @@ const finalTaxCal = taxCal(150);
 finalTaxCal(250);
 
 // Practice OF Function Methods
+// Call Method
 const student = {
   name: 'Ahmad Sharafat',
   grade: '10th Class',
@@ -175,3 +176,17 @@ const teacher = {
   grade: '10th class chemistry teacher  ',
 };
 introduction.call(teacher);
+
+//Apply Method
+const calculator = {
+  add(num1, num2) {
+    console.log(num1 + num2);
+  },
+};
+calculator.add(23, 50);
+const addition = calculator.add;
+
+const math = {
+  numbers: [50, 50],
+};
+addition.apply(math, math.numbers);
