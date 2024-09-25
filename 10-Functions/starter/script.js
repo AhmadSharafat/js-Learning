@@ -208,3 +208,17 @@ const hello = meeting.bind(person1);
 hello();
 
 // Partial Application Of Bind Method Problem
+
+const multiplication = function (a, b) {
+  console.log(a * b);
+};
+multiplication(20, 12);
+
+ 
+const double = function (b) {
+ 
+  console.log(a * b);
+};
+const multiplication1 = multiplication.bind(double, 10);
+multiplication1(20);
+multiplication1(10)
