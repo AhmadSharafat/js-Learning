@@ -190,3 +190,21 @@ const math = {
   numbers: [50, 50],
 };
 addition.apply(math, math.numbers);
+//Bind Method Problems
+const person = {
+  name: 'Donald J Trump',
+  greet() {
+    console.log(`My Name is ${this.name} Nice to meet you!`);
+  },
+};
+person.greet();
+const meeting = person.greet;
+
+const person1 = {
+  name: 'Charlie',
+};
+const hello = meeting.bind(person1);
+
+hello();
+
+// Partial Application Of Bind Method Problem
