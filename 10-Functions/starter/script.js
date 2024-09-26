@@ -214,11 +214,28 @@ const multiplication = function (a, b) {
 };
 multiplication(20, 12);
 
- 
 const double = function (b) {
- 
   console.log(a * b);
 };
 const multiplication1 = multiplication.bind(double, 10);
 multiplication1(20);
-multiplication1(10)
+multiplication1(10);
+// Call Method
+const car = {
+  make: 2024,
+  model: 'Toyata Cross ',
+  finalDetail() {
+    console.log(
+      `This is my automobile ${this.model} and the make is ${this.make}`
+    );
+  },
+};
+car.finalDetail();
+
+const autoDetails = car.finalDetail;
+
+const motorCycle = {
+  make: 2022,
+  model: 'Honda 70',
+};
+autoDetails.call(motorCycle);
