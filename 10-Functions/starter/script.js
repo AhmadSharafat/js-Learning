@@ -239,3 +239,14 @@ const motorCycle = {
   model: 'Honda 70',
 };
 autoDetails.call(motorCycle);
+
+// IIFE
+// When we need to run the function one time we use this function Expression
+(function () {
+  console.log('This function runs only a single time!');
+  const isPrivate = 23;
+})();
+
+
+// For Arrow Function
+(() => console.log('This function runs Also only a single time!'))();
