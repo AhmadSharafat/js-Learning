@@ -247,6 +247,7 @@ autoDetails.call(motorCycle);
   const isPrivate = 23;
 })();
 
-
 // For Arrow Function
 (() => console.log('This function runs Also only a single time!'))();
+
+// Closures
