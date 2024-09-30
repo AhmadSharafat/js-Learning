@@ -271,3 +271,24 @@ const closuresF = function () {
 const finalMessege = closuresF();
 finalMessege();
 finalMessege();
+
+// Closures with Objects
+// Uses The Object in function to implement the closures Concept
+
+const counter = function () {
+  let value = 0;
+  return {
+    increment: function () {
+      value++;
+    },
+    getCount: function () {
+      console.log(value);
+    },
+  };
+};
+const counter1 = counter();
+counter1.increment();
+counter1.increment();
+counter1.increment();
+counter1.increment();
+counter1.getCount();
