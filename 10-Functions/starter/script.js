@@ -251,3 +251,23 @@ autoDetails.call(motorCycle);
 (() => console.log('This function runs Also only a single time!'))();
 
 // Closures
+const scoreBooking = function () {
+  let passengerData = 0;
+  return function () {
+    passengerData++;
+    console.log(`${passengerData} Passengers`);
+  };
+};
+
+const booker = scoreBooking();
+booker();
+// Example 2 Of Closures
+const closuresF = function () {
+  const messege = 'Ahmad is a great guy!';
+  return function () {
+    console.log(`My Observation: ${messege}`);
+  };
+};
+const finalMessege = closuresF();
+finalMessege();
+finalMessege();
