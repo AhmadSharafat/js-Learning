@@ -292,3 +292,31 @@ counter1.increment();
 counter1.increment();
 counter1.increment();
 counter1.getCount();
+
+// More Problems of Closures
+// 1
+let f;
+const a = function () {
+  let n = 23;
+  f = function () {
+    console.log(n * 2);
+  };
+};
+// This Approach is not good bcz first function does not return Anything!
+// const first = a();
+// first();
+
+a();
+f();
+console.dir(f);
+
+//2
+const b = function () {
+  let n = 12;
+  f = function () {
+    console.log(n * 2);
+  };
+};
+
+b();
+f();
