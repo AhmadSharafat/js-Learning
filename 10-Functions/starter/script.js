@@ -320,3 +320,14 @@ const b = function () {
 
 b();
 f();
+// Example 3
+const boardingPaseenger = function (n, wait) {
+  let perGroup = n / 3;
+  setTimeout(function () {
+    console.log(`We all are boarding now ${n} passengers`);
+    console.log(`We are with 3 Groups Of Paseengers, each Group has ${perGroup} Passengers`);
+  }, wait * 1000);
+
+  console.log(`We will start boarding in ${wait} seconds`);
+};
+boardingPaseenger(180, 3);
