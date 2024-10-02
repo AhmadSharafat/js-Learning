@@ -85,3 +85,19 @@ console.log(arr.slice(-2));
 console.log(arr.slice(2, 5));
 console.log(arr.slice(2, 3));
 console.log(arr.slice());
+
+// Splice Method
+//The Splice Method does change the orignal Array
+// When we get elements using splice method the extracted elemts del from orignal array
+arr.splice(-1);
+console.log(arr);
+arr.splice(1, 3);
+console.log(arr);
+
+const arr1 = ['1', '2', '3', '4', '5', '6'];
+// Add the new element In Place Of Index 1
+arr1.splice(1, 1, '0');
+console.log(arr1);
+// Delete the elements from Index 0 to Index 3 and return Remaining Element
+arr1.splice(0, 3);
+console.log(arr1);
