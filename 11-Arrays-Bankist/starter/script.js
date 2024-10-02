@@ -74,3 +74,14 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+// Simple Array Methods
+// Slice Method is used to create New Array just like in string
+// It does not change the orignal array!
+const arr = ['a', 'b', 'c', 'e', 'd', 'f', 'g'];
+console.log(arr.slice(2));
+console.log(arr.slice(2, 6));
+console.log(arr.slice(-2));
+console.log(arr.slice(2, 5));
+console.log(arr.slice(2, 3));
+console.log(arr.slice());
