@@ -115,3 +115,14 @@ console.log(arr2);
 
 arr1.reverse();
 console.log(arr1);
+
+// Concat Method
+// this Method is used to combine two Arrays
+
+//  "------This Method does not Change the Orignal Array------"
+
+const arr3 = ['p', 'b', 'j', 'd', 'l', 'm'];
+
+// This method we need to chose which array to combine with Whom!
+
+console.log(arr2.concat(arr3).reverse());
