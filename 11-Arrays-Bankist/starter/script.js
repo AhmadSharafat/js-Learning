@@ -96,8 +96,22 @@ console.log(arr);
 
 const arr1 = ['1', '2', '3', '4', '5', '6'];
 // Add the new element In Place Of Index 1
+
+//  "------This Method also Change the Orignal Array------"
 arr1.splice(1, 1, '0');
 console.log(arr1);
 // Delete the elements from Index 0 to Index 3 and return Remaining Element
 arr1.splice(0, 3);
+console.log(arr1);
+
+// Reverse Method Of Array
+
+// This Method is used to reverse the Array Properties
+
+const arr2 = ['x', 'y', 'z', 'a', 'b', 'c'];
+//  "------This Method also Change the Orignal Array------"
+arr2.reverse();
+console.log(arr2);
+
+arr1.reverse();
 console.log(arr1);
