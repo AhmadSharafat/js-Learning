@@ -126,3 +126,15 @@ const arr3 = ['p', 'b', 'j', 'd', 'l', 'm'];
 // This method we need to chose which array to combine with Whom!
 
 console.log(arr2.concat(arr3).reverse());
+
+// The New At Method
+const arr4 = [23, 35, 56];
+// Old Way To get elements from Array
+console.log(arr4[0]);
+// New At Method
+// This At is used only when we want to get last elemnt of Array
+console.log(arr4.at(1));
+console.log(arr4.at(-1));
+
+// At Method Also Works For string
+console.log('Ahmad'.at(2));
