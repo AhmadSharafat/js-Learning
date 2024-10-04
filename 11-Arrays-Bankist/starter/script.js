@@ -71,7 +71,7 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -138,3 +138,52 @@ console.log(arr4.at(-1));
 
 // At Method Also Works For string
 console.log('Ahmad'.at(2));
+
+// Transaction Data Using For Of Loop
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+for (const movement of movements) {
+  if (movement > 0) {
+    console.log(`You deposited ${movement}`);
+  } else {
+    console.log(`You withdrew ${Math.abs(movement)}`);
+  }
+}
+// For Of Loop with Indexes Of Array
+for (const [i, movement] of movements.entries()) {
+  if (movement > 0) {
+    console.log(`Movement indexes: ${i + 1}  You deposited ${movement}`);
+  } else {
+    console.log(
+      `Movement indexes: ${i + 1} You withdrew ${Math.abs(movement)}`
+    );
+  }
+}
+// For Each Method
+console.log('----For Each----');
+
+// For Each is a high order function we give Callback Function to tell it what to do
+// In this example after each iteration the elements store in movement Argument
+movements.forEach(function (movement) {
+  if (movement > 0) {
+    console.log(`You deposited ${movement}`);
+  } else {
+    console.log(`You withdrew ${Math.abs(movement)}`);
+  }
+});
+
+console.log('---For Each With Indexes----');
+// For Each with Indexes
+movements.forEach(function (movement, i, arr) {
+  if (movement > 0) {
+    console.log(`Movement indexes: ${i + 1}  You deposited ${movement}`);
+  } else {
+    console.log(
+      `Movement indexes: ${i + 1} You withdrew ${Math.abs(movement)}`
+    );
+  }
+});
+
+const num = [1, 2, 3, 4, 5];
+num.forEach((numbers, index) => {
+  console.log(`These are the indexes: ${index} and final numbers ${numbers} `);
+});
