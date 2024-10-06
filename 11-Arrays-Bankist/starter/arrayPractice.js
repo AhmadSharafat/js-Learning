@@ -129,3 +129,22 @@
 //   return euroToUsd * mov;
 // });
 // console.log(movNew);
+
+const withdrawals = movements.filter(function (mov) {
+  return mov < 0;
+});
+console.log(withdrawals);
+
+const filtration = movements.reduce(function (acc, cur) {
+  return acc + cur;
+}, 0);
+
+console.log(filtration);
+
+// The Chaining Of Method
+const euroToUsd = 1.1;
+const totalDepositsUsd = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * euroToUsd)
+  .reduce((acc, mov) => acc + mov);
+console.log(totalDepositsUsd);

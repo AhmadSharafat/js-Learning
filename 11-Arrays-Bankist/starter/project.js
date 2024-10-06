@@ -87,7 +87,7 @@ const displayMovements = function (movements) {
         <div class="movements__type movements__type--${type}">${
         i + 1
       } ${type}</div>
-        <div class="movements__value">${mov}</div>
+        <div class="movements__value">${mov}€</div>
         </div>`;
     // Adds data to the top of table
     // Necessary method to place the data where you want
@@ -96,7 +96,25 @@ const displayMovements = function (movements) {
 };
 
 displayMovements(account1.movements);
+// Making th total of all the transcation and adding it using reduce method
+const calDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+calDisplayBalance(account1.movements);
+// Change the Text of Summary using Method Chaining
+const calDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov);
+  labelSumIn.textContent = `${incomes}€`;
 
+  const outGoing = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov);
+  labelSumOut.textContent = `${Math.abs(outGoing)}€`;
+};
+calDisplaySummary(account1.movements);
 const createUserNames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -109,4 +127,3 @@ const createUserNames = function (accs) {
   });
 };
 createUserNames(accounts);
-console.log(accounts);
