@@ -148,3 +148,11 @@ const totalDepositsUsd = movements
   .map(mov => mov * euroToUsd)
   .reduce((acc, mov) => acc + mov);
 console.log(totalDepositsUsd);
+
+// The find Method
+// The find method returns the first element if matches the condition
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+
+const firstWithdrawals = movements.find(mov => mov === -400);
+console.log(firstWithdrawals);
