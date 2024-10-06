@@ -117,6 +117,7 @@ const calDisplaySummary = function (movements) {
   const interestRate = movements
     .filter(mov => mov > 0)
     .map(deposits => (deposits * 1.2) / 100)
+    .filter(int => int >= 1)
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interestRate}€`;
 };
