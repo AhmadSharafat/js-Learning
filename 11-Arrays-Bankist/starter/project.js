@@ -106,14 +106,21 @@ calDisplayBalance(account1.movements);
 const calDisplaySummary = function (movements) {
   const incomes = movements
     .filter(mov => mov > 0)
-    .reduce((acc, mov) => acc + mov);
+    .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
-
+  // Calculating the outgoing Summary (withdrawls)
   const outGoing = movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov);
   labelSumOut.textContent = `${Math.abs(outGoing)}€`;
+  // Calculate the interest rate
+  const interestRate = movements
+    .filter(mov => mov > 0)
+    .map(deposits => (deposits * 1.2) / 100)
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interestRate}€`;
 };
+
 calDisplaySummary(account1.movements);
 const createUserNames = function (accs) {
   accs.forEach(function (acc) {
