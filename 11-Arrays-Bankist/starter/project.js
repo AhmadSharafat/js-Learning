@@ -95,11 +95,13 @@ const displayMovements = function (movements) {
   });
 };
 
+
 // Making th total of all the transcation and adding it using reduce method
 const calDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance} EUR`;
 };
+
 // Change the Text of Summary using Method Chaining
 const calDisplaySummary = function (acc) {
   const incomes = acc.movements
@@ -119,6 +121,7 @@ const calDisplaySummary = function (acc) {
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interestRate}€`;
 };
+
 
 const createUserNames = function (accs) {
   accs.forEach(function (acc) {
