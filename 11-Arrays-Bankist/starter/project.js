@@ -95,34 +95,31 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
 // Making th total of all the transcation and adding it using reduce method
 const calDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance} EUR`;
 };
-calDisplayBalance(account1.movements);
 // Change the Text of Summary using Method Chaining
-const calDisplaySummary = function (movements) {
-  const incomes = movements
+const calDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
   // Calculating the outgoing Summary (withdrawls)
-  const outGoing = movements
+  const outGoing = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov);
   labelSumOut.textContent = `${Math.abs(outGoing)}€`;
   // Calculate the interest rate
-  const interestRate = movements
+  const interestRate = acc.movements
     .filter(mov => mov > 0)
-    .map(deposits => (deposits * 1.2) / 100)
+    .map(deposits => (deposits * acc.interestRate) / 100)
     .filter(int => int >= 1)
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interestRate}€`;
 };
 
-calDisplaySummary(account1.movements);
 const createUserNames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -135,3 +132,33 @@ const createUserNames = function (accs) {
   });
 };
 createUserNames(accounts);
+// Event Handlers
+// Login Feature
+let currentAccount;
+btnLogin.addEventListener('click', function (e) {
+  // Prevent Form from Submitting
+  e.preventDefault();
+  //Checking Credentials
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  // console.log(currentAccount);
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    //  Display the UI and Welcome Messege
+
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    // Input Fields Making it Empty after login
+    inputLoginPin.value = inputLoginUsername.value = '';
+    // Blur input Fields after Login
+    inputLoginPin.blur();
+    containerApp.style.opacity = 100;
+    // Display the Movements
+    displayMovements(currentAccount.movements);
+    // Display Overall balance
+    calDisplayBalance(currentAccount.movements);
+    // Display Summary
+    calDisplaySummary(currentAccount);
+  }
+});
