@@ -95,11 +95,11 @@ const displayMovements = function (movements) {
   });
 };
 
-
 // Making th total of all the transcation and adding it using reduce method
-const calDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
+const calDisplayBalance = function (acc) {
+  // Created new property in accounts object (acc.balance)
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance} EUR`;
 };
 
 // Change the Text of Summary using Method Chaining
@@ -122,7 +122,6 @@ const calDisplaySummary = function (acc) {
   labelSumInterest.textContent = `${interestRate}€`;
 };
 
-
 const createUserNames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -135,6 +134,14 @@ const createUserNames = function (accs) {
   });
 };
 createUserNames(accounts);
+const updateUI = function (acc) {
+  // Display the Movements
+  displayMovements(acc.movements);
+  // Display Overall balance
+  calDisplayBalance(acc);
+  // Display Summary
+  calDisplaySummary(acc);
+};
 // Event Handlers
 // Login Feature
 let currentAccount;
@@ -157,11 +164,34 @@ btnLogin.addEventListener('click', function (e) {
     // Blur input Fields after Login
     inputLoginPin.blur();
     containerApp.style.opacity = 100;
-    // Display the Movements
-    displayMovements(currentAccount.movements);
-    // Display Overall balance
-    calDisplayBalance(currentAccount.movements);
-    // Display Summary
-    calDisplaySummary(currentAccount);
+
+    // Update The UI After each Transaction
+    updateUI(currentAccount);
+  }
+});
+// Transfer The Money
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const recieverAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  inputTransferAmount.value = inputTransferTo.value = '';
+  if (
+    amount > 0 &&
+    recieverAcc &&
+    currentAccount.balance >= amount &&
+    recieverAcc?.username !== currentAccount.username
+  ) {
+    //  Tranfering the Money
+    // Here the accout that login will transfer money As current Account
+    // And the money is minus from account balance and total balnce , summary update with updatUI function
+    currentAccount.movements.push(-amount);
+    // Here the money is received by that account which is mentioned by Current login User
+    // Same here the reciever got his UI update
+    recieverAcc.movements.push(amount);
+    // Update The UI After each Transaction
+    // The same function make calclation of total Balance and summary after transcation
+    updateUI(currentAccount);
   }
 });
