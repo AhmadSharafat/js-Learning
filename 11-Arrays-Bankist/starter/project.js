@@ -173,6 +173,7 @@ btnLogin.addEventListener('click', function (e) {
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
   const amount = Number(inputTransferAmount.value);
+  // Checking if the receiver credentils are right?
   const recieverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
@@ -193,5 +194,26 @@ btnTransfer.addEventListener('click', function (e) {
     // Update The UI After each Transaction
     // The same function make calclation of total Balance and summary after transcation
     updateUI(currentAccount);
+  }
+});
+// Closed the account
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    // The findIndex searches for current login account index in accounts array
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+
+    // Delete the account or removes from main accounts array
+    accounts.splice(index, 1);
+    // Upadate the UI
+    containerApp.style.opacity = 0;
+    // Clearing The forms
+    inputCloseUsername.value = inputClosePin.value = '';
   }
 });
