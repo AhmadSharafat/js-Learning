@@ -217,3 +217,15 @@ btnClose.addEventListener('click', function (e) {
     inputCloseUsername.value = inputClosePin.value = '';
   }
 });
+// Loan Feature
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    inputLoanAmount.value = '';
+    // Add positive movement to the array
+    currentAccount.movements.push(amount);
+    // Update the UI
+    updateUI(currentAccount);
+  }
+});
