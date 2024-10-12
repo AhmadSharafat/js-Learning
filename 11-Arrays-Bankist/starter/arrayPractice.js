@@ -156,3 +156,20 @@ console.log(account);
 
 const firstWithdrawals = movements.find(mov => mov === -400);
 console.log(firstWithdrawals);
+// Flat Method
+// The flat method is used when we have nested arrays and we want all the arrays to be one
+const accountsMovements = accounts.map(acc => acc.movements);
+console.log(accountsMovements);
+
+const movementsOne = accountsMovements
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(movementsOne);
+// The flat-map method is next step from flat
+// When we want a new array we use flat-map because it as map + flat
+
+const flatMaps = accounts
+  // So in flat map we also need argument
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov);
+console.log(flatMaps);
