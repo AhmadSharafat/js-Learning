@@ -173,3 +173,21 @@ const flatMaps = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, mov) => acc + mov);
 console.log(flatMaps);
+
+// Sort method
+// For strings
+const strr = ['Ahmad', 'Sheraz', 'Zabia', 'Sexy'];
+strr.sort();
+console.log(strr);
+
+// For Numbers
+// Sort method convert numbers to strings due to this sortation does not work as expected
+// We use compare function for this!
+
+// assending Order
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+// Decending order
+movements.sort((a, b) => b - a);
+console.log(movements);
