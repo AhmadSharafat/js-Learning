@@ -191,3 +191,4 @@ console.log(movements);
 // Decending order
 movements.sort((a, b) => b - a);
 console.log(movements);
+
