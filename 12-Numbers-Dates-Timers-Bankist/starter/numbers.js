@@ -7,4 +7,13 @@ console.log(num1);
 
 let num3 = +'1234';
 console.log(num3);
+// Math square Method
+const MathSaquare = Math.sqrt(25);
+console.log(MathSaquare);
+// Finding Max Value
+const MaxValue = Math.max(23, 1, 3, 5, 66, 8);
+console.log(MaxValue);
+// Finding Min Value
+const minValue = Math.min(23, 1, 3, 5, 66, 8);
+console.log(minValue);
 
