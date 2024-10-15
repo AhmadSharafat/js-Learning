@@ -89,7 +89,7 @@ const displayMovements = function (movements, sort = false) {
         <div class="movements__type movements__type--${type}">${
         i + 1
       } ${type}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${mov.toFixed(2)}€</div>
         </div>`;
     // Adds data to the top of table
     // Necessary method to place the data where you want
@@ -109,7 +109,7 @@ const calDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
   // Calculating the outgoing Summary (withdrawls)
   const outGoing = acc.movements
     .filter(mov => mov < 0)
@@ -155,7 +155,7 @@ btnLogin.addEventListener('click', function (e) {
     acc => acc.username === inputLoginUsername.value
   );
   // console.log(currentAccount);
-  if (currentAccount?.pin === +(inputLoginPin.value)) {
+  if (currentAccount?.pin === +inputLoginPin.value) {
     //  Display the UI and Welcome Messege
 
     labelWelcome.textContent = `Welcome back, ${
@@ -204,7 +204,7 @@ btnClose.addEventListener('click', function (e) {
 
   if (
     inputCloseUsername.value === currentAccount.username &&
-    +(inputClosePin.value) === currentAccount.pin
+    +inputClosePin.value === currentAccount.pin
   ) {
     // The findIndex searches for current login account index in accounts array
     const index = accounts.findIndex(
@@ -222,7 +222,7 @@ btnClose.addEventListener('click', function (e) {
 // Loan Feature
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
-  const amount = Number(inputLoanAmount.value);
+  const amount = Math.floor(inputLoanAmount.value);
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     inputLoanAmount.value = '';
     // Add positive movement to the array

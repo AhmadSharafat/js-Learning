@@ -23,4 +23,6 @@ console.log(randomint);
 // Math trunc to round of decimal
 const randomf = (min, max) => Math.trunc(Math.random() * (max - min) + 1) + min;
 console.log(randomf(10, 20));
-
+// Math Floor
+const randomfn = (min, max) => Math.floor(Math.random() * (max - min) + 1) + min;
+console.log(randomfn(10, 20));
