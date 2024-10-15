@@ -17,3 +17,10 @@ console.log(MaxValue);
 const minValue = Math.min(23, 1, 3, 5, 66, 8);
 console.log(minValue);
 
+// Math Random Number generation
+const randomint = Math.trunc(Math.random() * 6 + 1);
+console.log(randomint);
+// Math trunc to round of decimal
+const randomf = (min, max) => Math.trunc(Math.random() * (max - min) + 1) + min;
+console.log(randomf(10, 20));
+
