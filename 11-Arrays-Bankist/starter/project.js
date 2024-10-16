@@ -197,6 +197,7 @@ const calDisplaySummary = function (acc) {
   labelSumInterest.textContent = `${interestRate}€`;
 };
 
+// Creating User names for login
 const createUserNames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -209,6 +210,7 @@ const createUserNames = function (accs) {
   });
 };
 createUserNames(accounts);
+// All Methods in one method when i need to run at once!
 const updateUI = function (acc) {
   // Display the Movements
   displayMovements(acc);
@@ -317,7 +319,7 @@ btnLoan.addEventListener('click', function (e) {
     currentAccount.movements.push(amount);
     // Pushing the Dates to current account
     currentAccount.movementsDates.push(new Date());
-    
+
     // Update the UI
     updateUI(currentAccount);
   }
