@@ -24,5 +24,16 @@ console.log(randomint);
 const randomf = (min, max) => Math.trunc(Math.random() * (max - min) + 1) + min;
 console.log(randomf(10, 20));
 // Math Floor
-const randomfn = (min, max) => Math.floor(Math.random() * (max - min) + 1) + min;
+const randomfn = (min, max) =>
+  Math.floor(Math.random() * (max - min) + 1) + min;
 console.log(randomfn(10, 20));
+
+// working with dates
+const dates = new Date();
+console.log(dates);
+const future = new Date(2023, 9, 12, 14, 23);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.toISOString());
