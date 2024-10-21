@@ -133,8 +133,19 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+// Options for intl about date and time also locale
+const options = {
+  hour: 'numeric',
+  minute: 'numeric',
+  day: 'numeric',
+  month: 'numeric',
+  year: 'numeric',
+  // weekday: 'numeric',
+};
+const locale = navigator.language;
+
 // Functions
-const formattingMovements = function (date) {
+const formattingMovements = function (date,locale) {
   // Here a function recives two inputes one is the dates of old transaction and other is current date
   const calcDayPassed = (date1, date2) =>
     // this operation Minus the old dates to current date to give us days
@@ -146,11 +157,13 @@ const formattingMovements = function (date) {
   if (daysPassed <= 7) return `${daysPassed} days ago`;
   else {
     // This code adds date to the movements on each transaction
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
+    // const day = `${date.getDate()}`.padStart(2, 0);
+    // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    // const year = date.getFullYear();
 
-    return `${day}/${month}/${year}`;
+    // return `${day}/${month}/${year}`;
+
+    return new Intl.DateTimeFormat(locale).format(date);
   }
 };
 const displayMovements = function (acc, sort = false) {
@@ -167,7 +180,7 @@ const displayMovements = function (acc, sort = false) {
     //this line below converts the string to object and we loop to the dates of movements and the index will the same as deposit
     const date = new Date(acc.movementsDates[i]);
 
-    const displayDate = formattingMovements(date);
+    const displayDate = formattingMovements(date,acc.locale);
     // The code that adds transctions data into inner html
     const html =
       // The html that has been modified first using template literals
@@ -259,13 +272,15 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginPin.blur();
     containerApp.style.opacity = 100;
     // Working On the app dates
-    const now = new Date();
-    const day = `${now.getDay()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = now.getHours();
-    const min = now.getMinutes();
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+    const localeDisplay = function (acc) {
+      const now = new Date();
+      //  Working with intl
+      labelDate.textContent = new Intl.DateTimeFormat(
+        acc.locale,
+        options
+      ).format(now);
+    };
+    localeDisplay(currentAccount);
 
     // Update The UI After each Transaction
     updateUI(currentAccount);
