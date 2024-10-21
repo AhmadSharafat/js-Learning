@@ -30,9 +30,9 @@ const account1 = {
     '2020-01-28T09:15:04.904Z',
     '2020-04-01T10:17:24.185Z',
     '2020-05-08T14:11:59.604Z',
-    '2020-05-27T17:01:17.194Z',
-    '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2024-10-15T17:01:17.194Z',
+    '2024-10-21T23:36:17.929Z',
+    '2024-10-20T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -133,7 +133,26 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+// Functions
+const formattingMovements = function (date) {
+  // Here a function recives two inputes one is the dates of old transaction and other is current date
+  const calcDayPassed = (date1, date2) =>
+    // this operation Minus the old dates to current date to give us days
+    Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+  const daysPassed = calcDayPassed(new Date(), date);
+  // Here are the days on the bases of how old transactions are!
+  if (daysPassed === 0) return 'Today';
+  if (daysPassed === 1) return 'Yesterday';
+  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  else {
+    // This code adds date to the movements on each transaction
+    const day = `${date.getDate()}`.padStart(2, 0);
+    const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    const year = date.getFullYear();
 
+    return `${day}/${month}/${year}`;
+  }
+};
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
   // Sorting of transacion data in assending order
@@ -144,15 +163,11 @@ const displayMovements = function (acc, sort = false) {
   movs.forEach(function (mov, i) {
     // checks the codition deposit or withdrwal
     const type = mov > 0 ? 'deposit' : 'withdrawal';
-    // This code adds date to the movements on each transaction
+
     //this line below converts the string to object and we loop to the dates of movements and the index will the same as deposit
     const date = new Date(acc.movementsDates[i]);
 
-    const day = `${date.getDay()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-
-    const displayDate = `${day}/${month}/${year}`;
+    const displayDate = formattingMovements(date);
     // The code that adds transctions data into inner html
     const html =
       // The html that has been modified first using template literals
