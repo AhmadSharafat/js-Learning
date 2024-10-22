@@ -73,6 +73,8 @@ const account3 = {
     '2020-07-11T23:36:17.929Z',
     '2020-07-12T10:51:36.790Z',
   ],
+  currency: 'USD',
+  locale: 'en-US',
 };
 
 const account4 = {
@@ -90,6 +92,8 @@ const account4 = {
     '2020-07-11T23:36:17.929Z',
     '2020-07-12T10:51:36.790Z',
   ],
+  currency: 'USD',
+  locale: 'en-US',
 };
 
 const accounts = [account1, account2, account3, account4];
@@ -145,7 +149,7 @@ const options = {
 const locale = navigator.language;
 
 // Functions
-const formattingMovements = function (date,locale) {
+const formattingMovements = function (date, locale) {
   // Here a function recives two inputes one is the dates of old transaction and other is current date
   const calcDayPassed = (date1, date2) =>
     // this operation Minus the old dates to current date to give us days
@@ -166,6 +170,13 @@ const formattingMovements = function (date,locale) {
     return new Intl.DateTimeFormat(locale).format(date);
   }
 };
+// Create a seperate Function for Woking with currency
+const formatCur = function (value, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency,
+  }).format(value);
+};
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
   // Sorting of transacion data in assending order
@@ -180,7 +191,8 @@ const displayMovements = function (acc, sort = false) {
     //this line below converts the string to object and we loop to the dates of movements and the index will the same as deposit
     const date = new Date(acc.movementsDates[i]);
 
-    const displayDate = formattingMovements(date,acc.locale);
+    const displayDate = formattingMovements(date, acc.locale);
+    const formattingMov = formatCur(mov, acc.locale, acc.currency);
     // The code that adds transctions data into inner html
     const html =
       // The html that has been modified first using template literals
@@ -190,7 +202,7 @@ const displayMovements = function (acc, sort = false) {
         i + 1
       } ${type}</div>
         <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov.toFixed(2)}€</div>
+        <div class="movements__value">${formattingMov}</div>
         </div>`;
     // Adds data to the top of table
     // Necessary method to place the data where you want
@@ -202,7 +214,8 @@ const displayMovements = function (acc, sort = false) {
 const calDisplayBalance = function (acc) {
   // Created new property in accounts object (acc.balance)
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance} EUR`;
+
+  labelBalance.textContent = formatCur(acc.balance, acc.locale, acc.currency);
 };
 
 // Change the Text of Summary using Method Chaining
@@ -210,19 +223,25 @@ const calDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+  labelSumIn.textContent = formatCur(incomes, acc.locale, acc.currency);
   // Calculating the outgoing Summary (withdrawls)
   const outGoing = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov);
-  labelSumOut.textContent = `${Math.abs(outGoing.toFixed(2))}€`;
+  labelSumOut.textContent = (
+    formatCur(Math.abs(outGoing), acc.locale, acc.currency)
+  );
   // Calculate the interest rate
   const interestRate = acc.movements
     .filter(mov => mov > 0)
     .map(deposits => (deposits * acc.interestRate) / 100)
     .filter(int => int >= 1)
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interestRate}€`;
+  labelSumInterest.textContent = formatCur(
+    interestRate,
+    acc.locale,
+    acc.currency
+  );
 };
 
 // Creating User names for login
