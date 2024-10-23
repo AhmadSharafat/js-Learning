@@ -228,8 +228,10 @@ const calDisplaySummary = function (acc) {
   const outGoing = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov);
-  labelSumOut.textContent = (
-    formatCur(Math.abs(outGoing), acc.locale, acc.currency)
+  labelSumOut.textContent = formatCur(
+    Math.abs(outGoing),
+    acc.locale,
+    acc.currency
   );
   // Calculate the interest rate
   const interestRate = acc.movements
@@ -268,8 +270,32 @@ const updateUI = function (acc) {
 };
 
 // Event Handlers
+// The coutdown timer function
+const logOutTimer = function () {
+  let time = 520;
+  // Use the set interval property
+  // Call the timer every second to the Ui
+  const logTimer = setInterval(function () {
+    // Adding minutes
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(Math.trunc(time % 60)).padStart(2, 0);
+    labelTimer.textContent = `${min}:${sec}`;
+
+    if (time === 0) {
+      clearInterval(logTimer);
+      containerApp.style.opacity = 0;
+      labelWelcome.textContent = 'Login to get started';
+    }
+    // Decrese the 1 second every second
+    time--;
+  }, 1000);
+
+  // Return the interval reference so we can clear it later if needed
+  // so when can have reference of Logtimer outside the function so we can clear it according to need
+  return logTimer;
+};
 // Login Feature
-let currentAccount;
+let currentAccount,logTimer;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent Form from Submitting
@@ -300,6 +326,10 @@ btnLogin.addEventListener('click', function (e) {
       ).format(now);
     };
     localeDisplay(currentAccount);
+    // Checking if the timers run already 
+    // if runing reset it 
+    if (logTimer) clearInterval(logTimer);
+    logTimer=logOutTimer(); 
 
     // Update The UI After each Transaction
     updateUI(currentAccount);
@@ -334,6 +364,10 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.movementsDates.push(new Date());
     // Pushing dates to reciever acc
     recieverAcc.movementsDates.push(new Date());
+    // Reset the logout timer
+    clearInterval(logTimer);
+    logTimer = logOutTimer();
+
     updateUI(currentAccount);
   }
 });
@@ -365,12 +399,16 @@ btnLoan.addEventListener('click', function (e) {
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     inputLoanAmount.value = '';
     // Add positive movement to the array
-    currentAccount.movements.push(amount);
-    // Pushing the Dates to current account
-    currentAccount.movementsDates.push(new Date());
-
-    // Update the UI
-    updateUI(currentAccount);
+    setTimeout(function () {
+      currentAccount.movements.push(amount);
+      // Pushing the Dates to current account
+      currentAccount.movementsDates.push(new Date());
+      // Reset the logout timer
+      clearInterval(logTimer);
+      logTimer = logOutTimer();
+      // Update the UI
+      updateUI(currentAccount);
+    }, 2500);
   }
 });
 
