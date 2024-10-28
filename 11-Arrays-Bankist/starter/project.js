@@ -177,6 +177,7 @@ const formatCur = function (value, locale, currency) {
     currency: currency,
   }).format(value);
 };
+// Displaying Movements through function
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
   // Sorting of transacion data in assending order
@@ -295,7 +296,7 @@ const logOutTimer = function () {
   return logTimer;
 };
 // Login Feature
-let currentAccount,logTimer;
+let currentAccount, logTimer;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent Form from Submitting
@@ -326,10 +327,10 @@ btnLogin.addEventListener('click', function (e) {
       ).format(now);
     };
     localeDisplay(currentAccount);
-    // Checking if the timers run already 
-    // if runing reset it 
+    // Checking if the timers run already
+    // if runing reset it
     if (logTimer) clearInterval(logTimer);
-    logTimer=logOutTimer(); 
+    logTimer = logOutTimer();
 
     // Update The UI After each Transaction
     updateUI(currentAccount);
@@ -416,6 +417,7 @@ btnLoan.addEventListener('click', function (e) {
 let sorted = false;
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
-  displayMovements(currentAccount.movements, !sorted);
+  displayMovements(currentAccount, !sorted);
   sorted = !sorted;
+
 });
