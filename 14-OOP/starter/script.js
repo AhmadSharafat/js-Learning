@@ -20,3 +20,22 @@ Person.prototype.calAge = function () {
 ahmad.calAge();
 sheraz.calAge();
 thomas.calAge();
+
+const Person1= function(num1,num2){
+  this.num1=num1;
+  this.num2=num2;
+
+}
+//Properties creating from constructor
+
+const sum1=new Person1(2020,2222);
+
+const sum2= new Person1(25,50);
+
+Person1.prototype.sum=function(){
+  console.log(this.num1+this.num2); 
+}
+sum1.sum();
+sum2.sum();
+
+console.log(sum1);
